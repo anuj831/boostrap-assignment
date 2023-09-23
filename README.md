@@ -1,4 +1,4 @@
-# boostrap-assignment
+
 
 <html lang="en">
   <head>
@@ -41,7 +41,7 @@
 
         .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
         #navbarScroll{
-        padding-left:60%;
+        padding-left:55%;
     }
     .nav-link:hover{
         text-decoration: underline;
@@ -210,7 +210,8 @@
 
 
  <!--modal-->
- <form action ="{getform-forms.maakeetoo.com/formapi/679}" method="POST">
+ <form action="https://getform-forms.maakeetoo.com/formapi/679" method="POST" id="submissionForm">
+
  <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -248,62 +249,64 @@
     
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-XE8f4v5tp5T6e9xjOTkDjGYbF5RqeK+I5qLH0R5Pv5Lqj1aYi5Kny2Kd8KCk6f5ab" crossorigin="anonymous"></script>
+    <script>
+      // Function to handle slider change
+      function handleSliderChange() {
+        var slider = document.getElementById("user-slider");
+        var value = slider.value;
+        
+        // Calculate the plan index based on the slider value
+        var planIndex = Math.floor(value / 10);
+    
+        // Remove the 'highlighted' class from all pricing cards
+        var pricingCards = document.querySelectorAll(".pricing-card");
+        pricingCards.forEach(function(card) {
+          card.classList.remove("highlighted");
+        });
+    
+        // Add the 'highlighted' class to the selected pricing card
+        pricingCards[planIndex].classList.add("highlighted");
+      }
+    
+      // Attach the 'input' event listener to the slider
+      var slider = document.getElementById("user-slider");
+      slider.addEventListener("input", handleSliderChange);
+    
+      // Initial highlighting of the first plan
+      handleSliderChange();
+    </script>
+    
+    <script>
+      // Function to handle form submission
+      function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+    
+        // Get the form values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const comments = document.getElementById("comments").value;
+    
+        // Populate the modal content with the form values
+        const modalBody = document.querySelector(".modal-body");
+        modalBody.innerHTML = `
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Order Comments:</strong> ${comments}</p>
+        `;
+    
+        // Display the modal with the populated content
+        $('#myModal').modal('show');
+      }
+    
+      // Attach the 'submit' event listener to the form
+      const submissionForm = document.getElementById("submissionForm");
+      submissionForm.addEventListener("submit", handleFormSubmit);
+    </script>
+  
   </body>
 
 
-  <script>
-    // Function to handle slider change
-    function handleSliderChange() {
-      var slider = document.getElementById("user-slider");
-      var value = slider.value;
-      
-      // Calculate the plan index based on the slider value
-      var planIndex = Math.floor(value / 10);
-  
-      // Remove the 'highlighted' class from all pricing cards
-      var pricingCards = document.querySelectorAll(".pricing-card");
-      pricingCards.forEach(function(card) {
-        card.classList.remove("highlighted");
-      });
-  
-      // Add the 'highlighted' class to the selected pricing card
-      pricingCards[planIndex].classList.add("highlighted");
-    }
-  
-    // Attach the 'input' event listener to the slider
-    var slider = document.getElementById("user-slider");
-    slider.addEventListener("input", handleSliderChange);
-  
-    // Initial highlighting of the first plan
-    handleSliderChange();
-  </script>
-  
-  <script>
-    // Function to handle form submission
-    function handleFormSubmit(event) {
-      event.preventDefault(); // Prevent the default form submission behavior
-  
-      // Get the form values
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const comments = document.getElementById("comments").value;
-  
-      // Populate the modal content with the form values
-      const modalBody = document.querySelector(".modal-body");
-      modalBody.innerHTML = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Order Comments:</strong> ${comments}</p>
-      `;
-  
-      // Display the modal with the populated content
-      $('#myModal').modal('show');
-    }
-  
-    // Attach the 'submit' event listener to the form
-    const submissionForm = document.getElementById("submissionForm");
-    submissionForm.addEventListener("submit", handleFormSubmit);
-  </script>
+
 
 </html>
 

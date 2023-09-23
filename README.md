@@ -41,7 +41,7 @@
 
         .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
         #navbarScroll{
-        padding-left:64%;
+        padding-left:60%;
     }
     .nav-link:hover{
         text-decoration: underline;
